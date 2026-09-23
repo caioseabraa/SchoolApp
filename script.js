@@ -76,7 +76,7 @@ function createForm(qtdeStu,qtdeNote) {
         }
         
         let btncalc = document.createElement("input")
-        btncalc.type = 'buttton'
+        btncalc.type = 'button'
         btncalc.value = 'Mostrar Resultados'
         btncalc.onclick = () => {
             let stu = calcform(qtdeStu)
@@ -85,9 +85,32 @@ function createForm(qtdeStu,qtdeNote) {
         }
         div.appendChild(btncalc)
 }
-function calcform(){
+function calcform(qtdeStu){
+    const names = document.querySelectorAll(".input-aluno")
+    let stu = []
 
+    for (let i = 1; i <= qtdeStu; i++) {
+        let notesE1 = document.querySelectorAll(`.nota-aluno-${i}`)
+        let notes = Array.from(notesE1).map(e1 => Number(e1.value) || 0)
+        let media = notes.reduce((a,b) => a+b, 0) / notes.length
+        
+        let students = {
+            nome: names[i - 1].value || `Aluno ${i}`,
+            notas: notes,
+            média: media
+        }
+        stu.push(students)
+    }
+    return stu
 }
-function resultform(){
+function resultform(stu){
+    const resDiv = document.getElementById("res")
+    resDiv.innerHTML = ''
+
+    stu.forEach(students => {
+        let p = document.createElement("p")
+        p.textContent = `${students.nome}: média ${students.média.toFixed(2)}`
+        resDiv.appendChild(p)
+    });
 
 }
