@@ -74,7 +74,7 @@ function createForm(qtdeStu,qtdeNote) {
             div.appendChild(bloco)
             
         }
-        
+        let spa = document.createElement("br")
         let btncalc = document.createElement("input")
         btncalc.type = 'button'
         btncalc.value = 'Mostrar Resultados'
@@ -83,6 +83,7 @@ function createForm(qtdeStu,qtdeNote) {
             resultform(stu)
 
         }
+        div.appendChild(spa)
         div.appendChild(btncalc)
 }
 function calcform(qtdeStu){
