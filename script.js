@@ -107,11 +107,30 @@ function calcform(qtdeStu){
 function resultform(stu){
     const resDiv = document.getElementById("res")
     resDiv.innerHTML = ''
+    
 
     stu.forEach(students => {
         let p = document.createElement("p")
         p.textContent = `${students.nome}: média ${students.média.toFixed(2)}`
         resDiv.appendChild(p)
+
+        let resSel = document.createElement("select")
+        resSel.size = students.notas.length
+        students.notas.forEach((nota,index) => {
+            let opt = document.createElement("option")
+            opt.text = `Nota ${index +1}: ${nota}`
+            resSel.appendChild(opt)
+        })
+        resDiv.appendChild(resSel)
+
+        
+        
+
+         
     });
+    
+    
+        
+    
 
 }
